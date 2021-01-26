@@ -4,7 +4,7 @@
       <router-link
         v-for="(tag,key) in visitedViews"
         :key="key"
-        to="/about"
+        to="/nav"
         ref="tag"
         class="tag-view-item"
         tag="span">

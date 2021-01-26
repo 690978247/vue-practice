@@ -7,14 +7,24 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Layout',
-    // redirect: '/layout',
     component: layout,
+    redirect: '/home',
     children: [
       {
-        path: 'layout',
-        name: 'Dashboard',
-      },
+        path: '/home',
+        name: 'Home',
+        component: () => import ('../views/home/index.vue'),
+        meta: { title: '首页' }
+      }
+    ]
+  },
+  {
+    path: '/nav',
+    name: 'Nav',
+    component: layout,
+    redirect: '/nav/nav1-1',
+    meta: { title: 'Nav' },
+    children: [
       {
         path: 'nav1-1',
         name: 'Nav1-1',
@@ -34,10 +44,10 @@ const routes = [
         meta: { title: 'nav1-3页面' }
       },
       {
-        path: 'nav1-4-1',
-        name: 'Nav1-4-1',
+        path: 'nav1-4',
+        name: 'Nav1-4',
         component: () => import('../views/navPage/nav1/nav1-4-1.vue'),
-        meta: { title: 'nav1-4-1页面' }
+        meta: { title: 'nav1-4页面' }
       },
       {
         path: 'nav2-1',
@@ -46,10 +56,10 @@ const routes = [
         meta: { title: 'nav2-1页面' }
       },
       {
-        path: 'nav2-2-1',
-        name: 'Nav2-2-1',
+        path: 'nav2-2',
+        name: 'Nav2-2',
         component: () => import('../views/navPage/nav2/nav2-2-1.vue'),
-        meta: { title: 'nav2-2-1页面' }
+        meta: { title: 'nav2-2页面' }
       },
       {
         path: 'nav3-1',
@@ -67,12 +77,12 @@ const routes = [
   },
   {
     path: '*',
-    name: 'About',
+    name: '404',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/About.vue')
+      return import(/* webpackChunkName: "about" */ '../views/404.vue')
     }
   },
 ]
