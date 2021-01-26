@@ -8,6 +8,7 @@ const routes = [
   {
     path: '/',
     component: layout,
+    meta: { title: '首页' },
     redirect: '/home',
     children: [
       {
@@ -23,7 +24,7 @@ const routes = [
     name: 'Nav',
     component: layout,
     redirect: '/nav/nav1-1',
-    meta: { title: 'Nav' },
+    meta: { title: '导航页面' },
     children: [
       {
         path: 'nav1-1',
@@ -78,6 +79,7 @@ const routes = [
   {
     path: '*',
     name: '404',
+    hidden: true,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

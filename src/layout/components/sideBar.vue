@@ -6,48 +6,42 @@
       @close="handleClose"
       background-color="#545c64"
       text-color="#fff"
+      router
       active-text-color="#ffd04b">
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-          <el-menu-item index="1-1">选项1-1</el-menu-item>
-          <el-menu-item index="1-2">选项1-2</el-menu-item>
-          <el-menu-item index="1-3">选项1-3</el-menu-item>
-          <el-menu-item index="1-4">选项1-4</el-menu-item>
-      </el-submenu>
-      <el-submenu index="2">
-        <template slot="title" >
-          <i class="el-icon-menu"></i>
-          <span>导航二</span>
-        </template>
-        <el-menu-item index="2-1">选项2-1</el-menu-item>
-        <el-menu-item index="1-4-1">选项2-2</el-menu-item>
-      </el-submenu>
-      <el-submenu index="3">
-        <template slot="title">
-          <i class="el-icon-document"></i>
-          <span>导航三</span>
-        </template>
-        <el-menu-item index="3-1">选项3-1</el-menu-item>
-        <el-submenu>
-          <template slot="title" >
-            选项3-2
-          </template>
-          <el-menu-item index="3-2-1">选项3-2-1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item>
+      <template v-for="(item,key) in route" >
+        <div :key="key" v-if="!item.hidden" >
+          <el-submenu v-if="item.children && item.children.length > 1" :index="item.path" >
+            <template slot="title" >
+              {{item.meta.title}}
+            </template>
+            <el-menu-item v-for="(child, key) in item.children" :key="key" :index="item.path + '/' + child.path" >
+              {{child.meta.title}}
+            </el-menu-item>
+          </el-submenu>
+
+          <el-menu-item v-else :index="item.path" >
+            {{item.meta.title}}
+          </el-menu-item>
+        </div>
+      </template>
     </el-menu>
 </template>
 
 <script>
 export default {
   name: 'SideBar',
+  computed: {
+    route () {
+      return this.$router.options.routes
+    }
+  },
+  data () {
+    return {
+    }
+  },
+  mounted () {
+    // console.log(JSON.stringify(this.$router.options.routes))
+  },
   methods: {
     handleOpen(key, keyPath) {
         console.log(key, keyPath);
