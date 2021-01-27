@@ -1,6 +1,6 @@
 <template>
     <el-menu
-      default-active="2"
+      :default-active="$route.path"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
@@ -19,8 +19,8 @@
             </el-menu-item>
           </el-submenu>
 
-          <el-menu-item v-else :index="item.path" >
-            {{item.meta.title}}
+          <el-menu-item v-else :index="item.redirect" >
+            {{item.meta.title }}
           </el-menu-item>
         </div>
       </template>
