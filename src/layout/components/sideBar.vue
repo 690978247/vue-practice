@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <div class="aside-header" >这是一个LOGO</div>
     <el-menu
       :default-active="$route.path"
       class="el-menu-vertical-demo"
@@ -7,11 +9,13 @@
       background-color="#545c64"
       text-color="#fff"
       router
+      :collapse="isCollapse"
       active-text-color="#ffd04b">
       <template v-for="(item,key) in route" >
         <div :key="key" v-if="!item.hidden" >
           <el-submenu v-if="item.children && item.children.length > 1" :index="item.path" >
             <template slot="title" >
+              <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
               {{item.meta.title}}
             </template>
             <el-menu-item v-for="(child, key) in item.children" :key="key" :index="item.path + '/' + child.path" >
@@ -20,11 +24,13 @@
           </el-submenu>
 
           <el-menu-item v-else :index="item.redirect" >
+            <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
             {{item.meta.title }}
           </el-menu-item>
         </div>
       </template>
     </el-menu>
+  </div>
 </template>
 
 <script>
@@ -33,7 +39,10 @@ export default {
   computed: {
     route () {
       return this.$router.options.routes
-    }
+    },
+    isCollapse () {
+      return this.$store.state.sideBar.opened
+    },
   },
   data () {
     return {
@@ -54,5 +63,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.aside-header {
+    width: 100%;
+    height: 68px;
+    color: #fff;
+    line-height: 68px;
+    text-align: center;
+  }
 </style>

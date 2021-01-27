@@ -1,9 +1,6 @@
 <template>
   <div class="app-wrap" >
-    <aside class="aside">
-      <div class="aside-header" >这是一个LOGO</div>
-      <sideBar />
-    </aside>
+    <sideBar class="aside" />
     <div class="app-main" >
       <div class="main-header"></div>
       <tagsView></tagsView>
@@ -34,16 +31,10 @@ $layout-back-color: #545C64;
   display: flex;
 }
 .aside {
-  width: $aside-width;
+  width: $aside-width !important;
   height: 100%;
   background:$layout-back-color;
-  overflow-x: hidden;
-  .aside-header {
-    height: $head-height;
-    color: #fff;
-    line-height: 68px;
-    text-align: center;
-  }
+  overflow: hidden;
 }
 .app-main {
   width: 100%;
