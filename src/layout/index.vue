@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 $head-height: 68px;
-$aside-width: 220px;
+$aside-width: 240px;
 $layout-back-color: #545C64;
 
 .app-wrap {
@@ -37,6 +37,7 @@ $layout-back-color: #545C64;
   width: $aside-width;
   height: 100%;
   background:$layout-back-color;
+  overflow-x: hidden;
   .aside-header {
     height: $head-height;
     color: #fff;
