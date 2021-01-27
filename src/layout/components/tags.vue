@@ -2,13 +2,14 @@
   <div class="tag-view" >
     <div class="tag-ul">
       <router-link
-        v-for="(tag,key) in visitedViews"
-        :key="key"
-        to="/nav"
+        v-for="tag in visitedViews"
+        :key="tag.path"
+        :to="tag.path"
         ref="tag"
         class="tag-view-item"
+        :class="isActive(tag)?'active':''"
         tag="span">
-        {{tag}}
+        {{tag.meta.title}}
         <i class="el-icon-close del-tag" ></i>
       </router-link>
     </div>
@@ -21,9 +22,33 @@ export default {
   name: 'tagsView',
   data() {
     return {
-      visitedViews: [1,2,3,4]
     }
   },
+  computed: {
+    visitedViews() {
+      return this.$store.state.tagsView.visitedViews
+    }
+  },
+  watch: {
+    $route () {
+      this.addTags()
+    }
+  },
+  mounted() {
+    this.initTags ()
+    this.addTags()
+  },
+  methods: {
+    isActive(route) {
+      return route.path === this.$route.path
+    },
+    initTags () {
+      this.$store.dispatch('addVisitedView', this.$route)
+    },
+    addTags() {
+      this.$store.dispatch('addView', this.$route)
+    },
+  }
 }
 </script>
 
@@ -39,6 +64,21 @@ export default {
   .tag-ul {
     width: 83%;
     height: 100%;
+    .active {
+        background-color: #42b983 !important;
+        color: #fff;
+        border-color: #42b983;
+        // &::before {
+        //   content: '';
+        //   background: #fff;
+        //   display: inline-block;
+        //   width: 8px;
+        //   height: 8px;
+        //   border-radius: 50%;
+        //   position: relative;
+        //   margin-right: 2px;
+        // }
+      }
   }
   .tag-view-item {
     border: 1px solid #eee;
