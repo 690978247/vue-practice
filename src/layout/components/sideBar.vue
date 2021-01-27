@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="aside-header" >这是一个LOGO</div>
+    <div class="aside-header" v-if="!isCollapse"  >这是一个LOGO</div>
     <el-menu
       :default-active="$route.path"
       class="el-menu-vertical-demo"

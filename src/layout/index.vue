@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrap" >
-    <sideBar class="aside" />
+    <sideBar :class="classObj" class="aside" />
     <div class="app-main" >
       <div class="main-header"></div>
       <tagsView></tagsView>
@@ -16,7 +16,18 @@ import mainView from './components/mainView'
 
 export default {
   name: 'Layout',
-  components: { sideBar, tagsView, mainView }
+  components: { sideBar, tagsView, mainView },
+  computed: {
+    sidebar () {
+      return this.$store.state.sideBar
+    },
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened,
+      }
+    }
+  }
 }
 </script>
 
@@ -31,7 +42,7 @@ $layout-back-color: #545C64;
   display: flex;
 }
 .aside {
-  width: $aside-width !important;
+  width: $aside-width;
   height: 100%;
   background:$layout-back-color;
   overflow: hidden;
@@ -45,5 +56,8 @@ $layout-back-color: #545C64;
     height: $head-height;
     background: $layout-back-color;
   }
+}
+.openSidebar {
+  width: 70px;
 }
 </style>
