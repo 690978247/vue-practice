@@ -12,22 +12,24 @@
       :collapse="isCollapse"
       active-text-color="#ffd04b">
       <template v-for="(item,key) in route" >
-        <div :key="key" v-if="!item.hidden" >
-          <el-submenu v-if="item.children && item.children.length > 1" :index="item.path" >
+        <template v-if="!item.hidden" >
+          <el-submenu :key="key" v-if="item.children && item.children.length > 1" :index="item.path" >
             <template slot="title" >
               <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
-              {{item.meta.title}}
+              <span slot="title">{{item.meta.title}}</span> 
             </template>
             <el-menu-item v-for="(child, key) in item.children" :key="key" :index="item.path + '/' + child.path" >
               {{child.meta.title}}
             </el-menu-item>
           </el-submenu>
 
-          <el-menu-item v-else :index="item.redirect" >
+          <el-menu-item :key="key" v-else :index="item.redirect" >
             <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
-            {{item.meta.title }}
+            <template slot="title" >
+              <span slot="title">{{item.meta.title }}</span>
+            </template>
           </el-menu-item>
-        </div>
+        </template>
       </template>
     </el-menu>
   </div>
