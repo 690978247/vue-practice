@@ -19,6 +19,14 @@ export default new Vuex.Store({
         fullPath: view.fullPath
       })
     },
+    DEL_VISITED_VIEW (state, view) {
+      for (const [i, v ] of state.tagsView.visitedViews.entries()) {
+        if (v.path === view.path) {
+          state.tagsView.visitedViews.splice(i, 1)
+          break
+        }
+      }
+    },
     ADD_CACHED_VIEW (state, view) {
       state.tagsView.cachedViews.push(view.name)
     }
@@ -28,12 +36,24 @@ export default new Vuex.Store({
       dispatch('addVisitedView', view)
       dispatch('addCachedView', view)
     },
+    delView ({ dispatch, state }, view) {
+      return new Promise (resolve => {
+        dispatch('delVisitedView', view)
+        resolve([...state.tagsView.visitedViews])
+      })
+    },
     addVisitedView({ commit }, view) {
       commit('ADD_VISITED_VIEW', view)
     },
     addCachedView({ commit }, view) {
       commit('ADD_CACHED_VIEW', view)
     },
+    delVisitedView({ commit, state }, view) {
+      return new Promise(resolve => {
+        commit('DEL_VISITED_VIEW', view)
+        resolve([...state.tagsView.visitedViews])
+      })
+    }
   },
   modules: {
   }

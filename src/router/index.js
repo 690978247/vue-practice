@@ -5,6 +5,7 @@ import layout from '../layout'
 Vue.use(VueRouter)
 /* 
  hidden: 是否在侧边栏显示
+ affix: 是否固定在tag栏
 */
 
 const routes = [
@@ -18,7 +19,7 @@ const routes = [
         path: 'home',
         component: () => import ('../views/home/index.vue'),
         name: 'Home',
-        meta: { title: '首页' }
+        meta: { title: '首页', affix: true }
       }
     ]
   },

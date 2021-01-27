@@ -2,15 +2,15 @@
   <div class="tag-view" >
     <div class="tag-ul">
       <router-link
-        v-for="tag in visitedViews"
-        :key="tag.path"
+        v-for="(tag, index) in visitedViews"
+        :key="index"
         :to="tag.path"
         ref="tag"
         class="tag-view-item"
         :class="isActive(tag)?'active':''"
         tag="span">
         {{tag.meta.title}}
-        <i class="el-icon-close del-tag" ></i>
+        <i v-if="!isAffix(tag)" class="el-icon-close del-tag" @click.prevent="delTag(tag, index)" ></i>
       </router-link>
     </div>
     <span>标签选项</span>
@@ -42,11 +42,36 @@ export default {
     isActive(route) {
       return route.path === this.$route.path
     },
+    isAffix (tag) {
+      return tag.meta && tag.meta.affix
+    },
     initTags () {
       this.$store.dispatch('addVisitedView', this.$route)
     },
     addTags() {
       this.$store.dispatch('addView', this.$route)
+    },
+    delTag (tag, index) {
+      this.$store.dispatch('delView', tag).then(visitedViews => {
+        if (this.isActive(tag)) {
+          this.toLastView(visitedViews, tag, index)
+        }
+      })
+    },
+    toLastView(visitedViews, view, index) {
+      const latestView = visitedViews.slice(index - 1)[0]
+      if (latestView) {
+        this.$router.push(latestView.fullPath)
+      } /* else {
+        // now the default is to redirect to the home page if there is no tags-view,
+        // you can adjust it according to your needs.
+        if (view.name === 'Dashboard') {
+          // to reload home page
+          this.$router.replace({ path: '/redirect' + view.fullPath })
+        } else {
+          this.$router.push('/')
+        }
+      } */
     },
   }
 }
@@ -64,6 +89,9 @@ export default {
   .tag-ul {
     width: 83%;
     height: 100%;
+    white-space:nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
     .active {
         background-color: #42b983 !important;
         color: #fff;
