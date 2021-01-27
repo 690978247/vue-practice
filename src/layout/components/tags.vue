@@ -18,10 +18,13 @@
 </template>
 
 <script>
+import path from 'path'
+
 export default {
   name: 'tagsView',
   data() {
     return {
+      affixTags: []
     }
   },
   computed: {
@@ -45,8 +48,35 @@ export default {
     isAffix (tag) {
       return tag.meta && tag.meta.affix
     },
+    filterAffixTags(routes, basePath = '/') {
+      let tags = []
+      routes.forEach(route => {
+        if (route.meta && route.meta.affix) {
+          const tagPath = path.resolve(basePath, route.path)
+          tags.push({
+            fullPath: tagPath,
+            path: tagPath,
+            name: route.name,
+            meta: { ...route.meta }
+          })
+        }
+        if (route.children) {
+          const tempTags = this.filterAffixTags(route.children, route.path)
+          if (tempTags.length >= 1) {
+            tags = [...tags, ...tempTags]
+          }
+        }
+      })
+      return tags
+    },
     initTags () {
-      this.$store.dispatch('addVisitedView', this.$route)
+      const affixTags = this.affixTags = this.filterAffixTags(this.$router.options.routes)
+      for (const tag of affixTags) {
+        // Must have tag name
+        if (tag.name) {
+          this.$store.dispatch('addVisitedView', tag)
+        }
+      }
     },
     addTags() {
       this.$store.dispatch('addView', this.$route)
