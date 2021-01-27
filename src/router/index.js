@@ -12,14 +12,14 @@ const routes = [
   {
     path: '/',
     component: layout,
-    meta: { title: '首页' },
+    meta: { title: '首页', icon: 'el-icon-star-off' },
     redirect: '/home',
     children: [
       {
         path: 'home',
         component: () => import ('../views/home/index.vue'),
         name: 'Home',
-        meta: { title: '首页', affix: true }
+        meta: { title: '首页', affix: true, }
       }
     ]
   },
@@ -28,7 +28,7 @@ const routes = [
     name: 'Nav',
     component: layout,
     redirect: '/nav/nav1-1',
-    meta: { title: '导航页面' },
+    meta: { title: '导航页面', icon: 'el-icon-map-location' },
     children: [
       {
         path: 'nav1-1',
@@ -83,7 +83,7 @@ const routes = [
   {
     path: '/test',
     component: layout,
-    meta: { title: '测试' },
+    meta: { title: '测试', icon: 'el-icon-user' },
     redirect: '/test/index',
     children: [
       {

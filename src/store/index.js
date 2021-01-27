@@ -8,6 +8,9 @@ export default new Vuex.Store({
     tagsView: {
       visitedViews: [],
       cachedViews: []
+    },
+    sideBar: {
+      opened: true
     }
   },
   mutations: {
@@ -29,6 +32,9 @@ export default new Vuex.Store({
     },
     ADD_CACHED_VIEW (state, view) {
       state.tagsView.cachedViews.push(view.name)
+    },
+    TOGGLE_SIDEBAR (state) {
+      state.sideBar.opened = !state.sideBar.opened 
     }
   },
   actions: {
@@ -53,6 +59,9 @@ export default new Vuex.Store({
         commit('DEL_VISITED_VIEW', view)
         resolve([...state.tagsView.visitedViews])
       })
+    },
+    toggleSidebar ({ commit }) {
+      commit('TOGGLE_SIDEBAR')
     }
   },
   modules: {
