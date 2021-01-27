@@ -81,6 +81,26 @@ const routes = [
     ]
   },
   {
+    path: '/test',
+    component: layout,
+    meta: { title: '测试' },
+    redirect: '/test/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import ('../views/testPage/test.vue'),
+        name: 'Test',
+        meta: { title: '测试'}
+      },
+      {
+        path: 'test2',
+        component: () => import ('../views/testPage/test2.vue'),
+        name: 'Test2',
+        meta: { title: '测试2'}
+      }
+    ]
+  },
+  {
     path: '*',
     name: '404',
     hidden: true,
