@@ -3,7 +3,7 @@
     <sideBar :class="classObj" class="aside" />
     <div class="app-main" >
       <div class="main-header">
-        <i class="iconfont iconcaidan header-icon" @click="toggleMenu" ></i>
+        <i class="iconfont iconcaidan header-icon" :class="{ 'rotate': sidebar.opened }" @click="toggleMenu" ></i>
       </div>
       <tagsView></tagsView>
       <mainView></mainView>
@@ -28,7 +28,7 @@ export default {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
       }
-    }
+    },
   },
   methods: {
     toggleMenu () {
@@ -76,5 +76,8 @@ $layout-back-color: #545C64;
 .openSidebar {
   width: 70px;
   transition: width .5s;
+}
+.rotate {
+  transform: rotate(180deg);
 }
 </style>
