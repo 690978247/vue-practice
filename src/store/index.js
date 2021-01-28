@@ -10,7 +10,7 @@ export default new Vuex.Store({
       cachedViews: []
     },
     sideBar: {
-      opened: true
+      opened: false
     }
   },
   mutations: {

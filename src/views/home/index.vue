@@ -1,7 +1,7 @@
 <template>
   <div>
     这是首页   {{isCollapse}}
-    <el-button @click="handleClick" >按钮</el-button>
+    <el-button @click="handleClick" >toggle按钮</el-button>
   </div>
 </template>
 

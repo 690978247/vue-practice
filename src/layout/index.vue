@@ -2,7 +2,9 @@
   <div class="app-wrap" >
     <sideBar :class="classObj" class="aside" />
     <div class="app-main" >
-      <div class="main-header"></div>
+      <div class="main-header">
+        <i class="iconfont iconcaidan header-icon" @click="toggleMenu" ></i>
+      </div>
       <tagsView></tagsView>
       <mainView></mainView>
     </div>
@@ -27,6 +29,11 @@ export default {
         openSidebar: this.sidebar.opened,
       }
     }
+  },
+  methods: {
+    toggleMenu () {
+      this.$store.dispatch('toggleSidebar')
+    },
   }
 }
 </script>
@@ -45,6 +52,7 @@ $layout-back-color: #545C64;
   width: $aside-width;
   height: 100%;
   background:$layout-back-color;
+  transition: width .5s;
   overflow: hidden;
 }
 .app-main {
@@ -55,9 +63,18 @@ $layout-back-color: #545C64;
     width: 100%;
     height: $head-height;
     background: $layout-back-color;
+    display: flex;
+    align-items: center;
+    .header-icon {
+      font-size: 22px;
+      color: #fff;
+      margin-left: 5px;
+      cursor: pointer;
+    }
   }
 }
 .openSidebar {
   width: 70px;
+  transition: width .5s;
 }
 </style>
