@@ -30,9 +30,22 @@ export default {
       }
     },
   },
+  mounted () {
+    window.addEventListener('resize', this.__resize)
+  },
+  destroyed () {
+    window.removeEventListener('resize', this.__resize)
+  },
   methods: {
     toggleMenu () {
       this.$store.dispatch('toggleSidebar')
+    },
+    __resize () {
+      if (document.body.clientWidth <= 700) {
+        this.$store.dispatch('showSidebar')
+      } else {
+        this.$store.dispatch('hideSidebar')
+      }
     },
   }
 }
@@ -75,6 +88,7 @@ $layout-back-color: #545C64;
 }
 .openSidebar {
   width: 70px;
+  min-width: 70px;
   transition: width .5s;
 }
 .rotate {

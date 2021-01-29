@@ -35,6 +35,12 @@ export default new Vuex.Store({
     },
     TOGGLE_SIDEBAR (state) {
       state.sideBar.opened = !state.sideBar.opened 
+    },
+    SHOW_SIDEBAR (state) {
+      state.sideBar.opened = true
+    },
+    HIDE_SIDEBAR (state) {
+      state.sideBar.opened = false
     }
   },
   actions: {
@@ -62,6 +68,12 @@ export default new Vuex.Store({
     },
     toggleSidebar ({ commit }) {
       commit('TOGGLE_SIDEBAR')
+    },
+    showSidebar ({ commit }) {
+      commit('SHOW_SIDEBAR')
+    },
+    hideSidebar ({ commit }) {
+      commit('HIDE_SIDEBAR')
     }
   },
   modules: {
