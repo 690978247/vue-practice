@@ -15,6 +15,7 @@
 import sideBar from './components/sideBar'
 import tagsView from './components/tags'
 import mainView from './components/mainView'
+import { debounce } from '@/utils'
 
 export default {
   name: 'Layout',
@@ -31,6 +32,7 @@ export default {
     },
   },
   mounted () {
+    this.__resize()
     window.addEventListener('resize', this.__resize)
   },
   destroyed () {
@@ -40,13 +42,13 @@ export default {
     toggleMenu () {
       this.$store.dispatch('toggleSidebar')
     },
-    __resize () {
+    __resize: debounce(function () {
       if (document.body.clientWidth <= 700) {
         this.$store.dispatch('showSidebar')
       } else {
         this.$store.dispatch('hideSidebar')
       }
-    },
+    }, 300)
   }
 }
 </script>
@@ -58,6 +60,7 @@ $layout-back-color: #545C64;
 
 .app-wrap {
   width: 100%;
+  min-width: 1024px;
   height: 100%;
   display: flex;
 }
