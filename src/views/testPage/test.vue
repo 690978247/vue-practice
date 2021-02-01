@@ -1,12 +1,33 @@
 <template>
   <div>
-    这是第一个测试页面
+    <!-- <Child> 
+        默认插槽
+    </Child> -->
+    <Child> 
+      <template >
+        默认内容
+      </template>
+      <template #first >
+        内容1
+      </template>
+    </Child>
+    <hr>
+    <Child>
+      <template #last="{ testProp = '默认值' }" >
+        来自子组件的数据{{testProp}}
+      </template>
+    </Child>
   </div>
 </template>
 
 <script>
+import Child from './child'
+
 export default {
-  name: 'Test'
+  name: 'Test',
+  components: {
+    Child
+  }
 }
 </script>
 

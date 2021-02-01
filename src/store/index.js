@@ -31,7 +31,10 @@ export default new Vuex.Store({
       }
     },
     ADD_CACHED_VIEW (state, view) {
-      state.tagsView.cachedViews.push(view.name)
+      if (state.tagsView.cachedViews.includes(view.name)) return 
+      if (!view.meta.noCache) {
+        state.tagsView.cachedViews.push(view.name)
+      }
     },
     TOGGLE_SIDEBAR (state) {
       state.sideBar.opened = !state.sideBar.opened 

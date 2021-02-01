@@ -4,8 +4,9 @@ import layout from '../layout'
 
 Vue.use(VueRouter)
 /* 
- hidden: 是否在侧边栏显示
- affix: 是否固定在tag栏
+ hidden 是否在侧边栏显示
+ affix 是否固定在tag栏
+ noCache: true 是否需要缓存
 */
 
 const routes = [
@@ -90,7 +91,7 @@ const routes = [
         path: 'index',
         component: () => import ('@/views/testPage/test.vue'),
         name: 'Test',
-        meta: { title: '测试'}
+        meta: { title: '测试', noCache: true}
       },
       {
         path: 'test2',
