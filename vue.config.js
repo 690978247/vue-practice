@@ -8,7 +8,7 @@ module.exports = {
   // 部署应用包时的基本 URL,用法和 webpack 本身的 output.publicPath 一致
   publicPath: '/',
   // 输出文件目录
-  outputDir: 'dist',
+  outputDir: process.env.outputDir,
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,    
   // 是否使用包含运行时编译器的 Vue 构建版本

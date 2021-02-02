@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "test": "vue-cli-service serve --mode test",
+    "build": "vue-cli-service build",
+    "build:test": "vue-cli-service build --mode test"
   },
   "dependencies": {
     "element-ui": "^2.15.0",
