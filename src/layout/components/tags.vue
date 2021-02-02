@@ -88,7 +88,7 @@ export default {
         }
       })
     },
-    toLastView(visitedViews, /* view, */ index) {
+    toLastView(visitedViews, view, index) {
       const latestView = visitedViews.slice(index - 1)[0]
       if (latestView) {
         this.$router.push(latestView.fullPath)
