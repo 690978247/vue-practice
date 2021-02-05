@@ -84,7 +84,7 @@ const routes = [
   {
     path: '/test',
     component: layout,
-    meta: { title: '测试', icon: 'el-icon-user' },
+    meta: { title: '测试', icon: 'el-icon-s-flag' },
     redirect: '/test/index',
     children: [
       {
