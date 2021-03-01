@@ -102,6 +102,26 @@ const routes = [
     ]
   },
   {
+    path: '/study',
+    component: layout,
+    meta: { title: '学习', icon: 'el-icon-s-claim' },
+    redirect: '/study/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/study/ES6/study'),
+        name: 'Study',
+        meta: { title: 'study' }
+      },
+      {
+        path: 'destruction',
+        component: () => import('@/views/study/ES6/destruction'),
+        name: 'Destruction',
+        meta: { title: '解构' }
+      }
+    ]
+  },
+  {
     path: '*',
     name: '404',
     hidden: true,
