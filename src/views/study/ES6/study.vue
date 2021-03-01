@@ -14,6 +14,31 @@
 </template>
 
 <script>
+// var handler = {
+//   get: function (target, name) {
+//     debugger
+//     if (name === 'prototype') {
+//       return Object.prototype
+//     }
+//     return 'Hello, ' + name
+//   },
+//   apply: function (target, thisBinding, args) {
+//     debugger
+//     return args[0]
+//   },
+//   construct: function () {
+//     debugger
+//     return { value: args[1] }
+//   }
+// }
+
+// var fproxy = new Proxy(function(x, y) {
+//   debugger
+//   return x + y
+// },handler)
+// debugger
+// console.log(fproxy(1, 2))
+
 export default {
   name: 'Study',
   data () {
