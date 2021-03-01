@@ -14,7 +14,6 @@ export default {
   },
   created () {
     let [foo, ...f] = [1, 2, 3]
-    console.log(foo, f)
   },
   methods: {
 

@@ -29,7 +29,7 @@ var Book = function (id, name, price) {
 Book.isChinese = true
 // 类静态共有方法（对象不能访问）
 Book.resetTime = function () {
-  console.log('new Time')
+  // console.log('new Time')
 }
 Book.prototype = {
   // 公有属性
@@ -40,16 +40,16 @@ Book.prototype = {
 
 var book = new Book(1, '测试测试1', 111)
 
-console.log(book.num)           // undefined
-console.log(book.isJSBook)      // false
-console.log(book.id)            // 1
-console.log(book.isChinese)     // undefined
+// console.log(book.num)           // undefined
+// console.log(book.isJSBook)      // false
+// console.log(book.id)            // 1
+// console.log(book.isChinese)     // undefined
 
 
-console.log(Book.num)           // undefined
-console.log(Book.isJSBook)      // undefined
-console.log(Book.id)            // undefined
-console.log(Book.isChinese)     // true
+// console.log(Book.num)           // undefined
+// console.log(Book.isJSBook)      // undefined
+// console.log(Book.id)            // undefined
+// console.log(Book.isChinese)     // true
 export default {
   name: 'Test2'
 }
