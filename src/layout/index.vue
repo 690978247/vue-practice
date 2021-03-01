@@ -55,7 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 $head-height: 68px;
-$aside-width: 240px;
+$aside-width: 230px;
 $layout-back-color: #545C64;
 
 .app-wrap {
@@ -66,9 +66,10 @@ $layout-back-color: #545C64;
 }
 .aside {
   width: $aside-width;
+  min-width: $aside-width;
   height: 100%;
   background:$layout-back-color;
-  transition: width .5s;
+  transition: all .5s;
   overflow: hidden;
 }
 .app-main {
@@ -92,7 +93,7 @@ $layout-back-color: #545C64;
 .openSidebar {
   width: 70px;
   min-width: 70px;
-  transition: width .5s;
+  transition: all .5s;
 }
 .rotate {
   transform: rotate(180deg);
