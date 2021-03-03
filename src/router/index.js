@@ -118,6 +118,12 @@ const routes = [
         component: () => import('@/views/study/ES6/destruction'),
         name: 'Destruction',
         meta: { title: '解构' }
+      },
+      {
+        path: 'canvas',
+        component: () => import('@/views/study/Html/canvas'),
+        name: 'Canvas',
+        meta: { title: 'canvas画布' }
       }
     ]
   },
