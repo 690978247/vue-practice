@@ -41,35 +41,37 @@ export default {
         {
           icon: '',
           name: '直线',
-          type: 'line'
+          type: 'line',
+          width: 200,
+          height: 40,
+          zIndex: 10,
         },
         {
           icon: '',
           name: '椭圆',
-          type: 'ellipse'
+          type: 'ellipse',
+          width: 200,
+          height: 60,
+          zIndex: 10,
         },
         {
           icon: '',
           name: '矩形',
-          type: 'rectangle'
+          type: 'rectangle',
+          width: 200,
+          height: 140,
+          zIndex: 10,
         },
         {
           icon: '',
           name: '按钮',
-          type: 'btn'
+          type: 'btn',
+          width: 200,
+          height: 40,
+          zIndex: 10,
         }
       ],
-      childNodes: [],
-      projectData: {
-         // 页面初始样式
-        commonStyle: {
-          backgroundColor: '#f4f4f4'
-        },
-        config: {}, // 页面信息配置
-        width: 1200,
-        height: 900,
-        elements: [] // 页面容器集合
-      }
+      childNodes: []
     }
   },
   created () {
@@ -108,6 +110,7 @@ export default {
       let data = JSON.parse(event.dataTransfer.getData('data'))
       // 清除dragstart事件传递的参数
       event.dataTransfer.clearData()
+      console.log(event)
       
       this.childNodes.push({
         name: data.name,
@@ -115,16 +118,19 @@ export default {
         commonStyle: {
           x: event.offsetX,
           y: event.offsetY,
-          width: 200,
-          height: 40,
+          width: data.width,
+          height: data.height,
+          zIndex: data.zIndex
         },
         pointList: ['lt', 'rt', 'lb', 'rb', 'l', 'r', 't', 'b'],
       })
     },
     dragenter (event) {
+      console.log('enter')
     },
     dragleave () {},
     dragovers (event) {
+      console.log(event.target)
        if (event.target.classList.contains('allowed')) {
          event.dataTransfer.dropEffect = 'move'
        } else {
@@ -132,25 +138,6 @@ export default {
        }
        event.preventDefault()
     },
-    // handleDrop (e) {
-    //   e.preventDefault()
-    //   console.log('x: ' + e.offsetX, 'y: ' + e.offsetY)
-    //   var name = e.dataTransfer.getData('name')
-    //   var type = e.dataTransfer.getData('type')
-    //   var wrap = document.getElementById('wrap')
-    //   if (name && type) {
-    //   var div = document.createElement('div')
-    //     div.style.cssText = `position: absolute; top: ${e.offsetY}px; left: ${e.offsetX}px; width: 100px; height: 80px; border: 1px solid #000`
-    //     div.setAttribute('draggable', true)
-    //     // div.style.cssText = `background: red`
-    //     wrap.append(div)
-    //   } else {
-    //     debugger
-    //     console.log(e.target)
-    //     // e.target.style.cssText = `position: absolute; top: ${e.target.offsetY}px; left: ${e.target.offsetX}px; width: 100px; height: 80px; border: 1px solid #000`
-    //     // e.target.style.top = e.target.offsetY + 'px'
-    //     // e.target.style.left = e.target.offsetX + 'px'
-    //   }
   }
 }
 </script>

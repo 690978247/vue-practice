@@ -5,7 +5,7 @@
       @mousedown="handleDown(childItem, $event)"
       @click.stop="handleClick"
     >
-
+      {{childItem.name}}
     </div>
   </div>
 </template>
@@ -31,7 +31,8 @@ export default {
         width: this.childItem.commonStyle.width + 'px',
         height: this.childItem.commonStyle.height + 'px',
         top: this.childItem.commonStyle.y + 'px',
-        left: this.childItem.commonStyle.x + 'px'
+        left: this.childItem.commonStyle.x + 'px',
+        zIndex: this.childItem.commonStyle.zIndex,
       }
     },
   },
@@ -67,12 +68,14 @@ export default {
         pos.x = currX - startX + startLeft
         // this.styleObj.top = pos.y + 'px'
         // this.styleObj.left = pos.x + 'px'
+        this.childItem.commonStyle.zIndex = 20
         this.childItem.commonStyle.top = pos.y + 'px'
         this.childItem.commonStyle.left = pos.x + 'px'
       }
       let up = () => {
         lastTime = new Date().getTime()
         if ((lastTime - firstTime) > 200) {
+          this.childItem.commonStyle.zIndex = 10
           this.$emit('resize')
         }
         document.removeEventListener('mousemove', move, true)
