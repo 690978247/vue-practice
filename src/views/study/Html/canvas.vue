@@ -9,8 +9,10 @@
       @dragleave="dragleave"
       @dragover="dragovers"
       @drop="drops"
+      ref="wrap"
+      id="wrap"
       >
-      <div id="wrap" class="wrap" >
+      <div class="wrap" >
       <!-- <canvas id="canvas" ref="canvas" :width="width" :height="height" class="canvas">
         Your browser does not support the canvas element.
       </canvas> -->
@@ -106,6 +108,13 @@ export default {
     },
     drops (event) {
       console.log('drops')
+      // 父级元素id = wrap的网页可见区域上、左的距离
+      let fatherY = this.$refs.wrap.offsetTop
+      let fatherX = this.$refs.wrap.offsetLeft
+
+      // 拖动元素距离网页可见区域上、左的距离
+      let targetX =  event.clientX
+      let targetY =  event.clientY
        // 获取dragstart事件传递的参数
       let data = JSON.parse(event.dataTransfer.getData('data'))
       // 清除dragstart事件传递的参数
@@ -116,8 +125,8 @@ export default {
         name: data.name,
         type: data.type,
         commonStyle: {
-          x: event.offsetX,
-          y: event.offsetY,
+          x: targetX - fatherX,
+          y: targetY - fatherY,
           width: data.width,
           height: data.height,
           zIndex: data.zIndex
