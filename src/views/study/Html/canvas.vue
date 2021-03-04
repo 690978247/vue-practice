@@ -98,7 +98,6 @@ export default {
     },
 
     handleStart (e, item) {
-      console.log(e.target)
       // if (e.target)
       e.dataTransfer.setData("data", JSON.stringify(item));
       e.dataTransfer.effectAllowed = 'copyMove'
@@ -119,7 +118,6 @@ export default {
       let data = JSON.parse(event.dataTransfer.getData('data'))
       // 清除dragstart事件传递的参数
       event.dataTransfer.clearData()
-      console.log(event)
       
       this.childNodes.push({
         name: data.name,
@@ -139,7 +137,6 @@ export default {
     },
     dragleave () {},
     dragovers (event) {
-      console.log(event.target)
        if (event.target.classList.contains('allowed')) {
          event.dataTransfer.dropEffect = 'move'
        } else {
