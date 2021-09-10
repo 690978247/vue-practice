@@ -16,7 +16,7 @@
           <el-submenu :key="key" v-if="item.children && item.children.length > 1" :index="item.path" >
             <template slot="title" >
               <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
-              <span slot="title">{{item.meta.title}}</span> 
+              <span>{{item.meta.title}}</span> 
             </template>
             <el-menu-item v-for="(child, key) in item.children" :key="key" :index="item.path + '/' + child.path" >
               {{child.meta.title}}
@@ -26,9 +26,11 @@
           <el-menu-item :key="key" v-else :index="item.redirect" >
             <i :class="item.meta.icon ? item.meta.icon : ''" ></i>
             <template slot="title" >
-              <span slot="title">{{item.meta.title }}</span>
+              <span>{{item.meta.title }}</span>
             </template>
           </el-menu-item>
+      
+
         </template>
       </template>
     </el-menu>
