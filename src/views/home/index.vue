@@ -1,6 +1,6 @@
 <template>
   <div>
-    这是首页   {{isCollapse}}
+    这是首页 {{time}}   {{isCollapse}}
     <el-button @click="handleClick" >toggle按钮</el-button>
   </div>
 </template>
@@ -10,12 +10,21 @@ export default {
   name: 'Home',
   data () {
     return {
+      time: '11'
     }
   },
   computed: {
     isCollapse () {
       return this.$store.state.sideBar.opened
     }
+  },
+  created() {
+    this.time = this.$dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss')
+    // this.$nextTick(() => {
+      setInterval(() => {
+        this.time = this.$dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss')
+      }, 1000)
+    // })
   },
   methods: {
     handleClick () {
