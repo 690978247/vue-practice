@@ -7,9 +7,15 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './permission'
 import * as dayjs from 'dayjs'
+import hls from 'videojs-contrib-hls'
+import VideoPlayer from 'vue-video-player';
+import "video.js/dist/video-js.css"
+import "vue-video-player/src/custom-theme.css"
 
 Vue.config.productionTip = false
 
+Vue.use(hls)
+Vue.use(VideoPlayer)
 Vue.use(ElementUI, { size: 'small' })
 Object.defineProperty(Vue.prototype, '$dayjs', { value: dayjs })
 
