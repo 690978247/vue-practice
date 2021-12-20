@@ -11,11 +11,14 @@ import hls from 'videojs-contrib-hls'
 import VideoPlayer from 'vue-video-player';
 import "video.js/dist/video-js.css"
 import "vue-video-player/src/custom-theme.css"
+import VueDPlayer from 'vue-dplayer';
+import 'vue-dplayer/dist/vue-dplayer.css';
 
 Vue.config.productionTip = false
 
 Vue.use(hls)
 Vue.use(VideoPlayer)
+Vue.use(VueDPlayer);
 Vue.use(ElementUI, { size: 'small' })
 Object.defineProperty(Vue.prototype, '$dayjs', { value: dayjs })
 

@@ -30,6 +30,7 @@ export default {
                 autoplay: true,
                 language: "zh-CN",
                 aspectRatio: "16:8",
+                controls: false,
                 fluid: true,
                 sources: [
                     {
